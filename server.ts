@@ -39,6 +39,15 @@ app.put('/edit/:id', async (req: any, res: any) => {
   res.json(editTask);
 });
 
+app.delete('/task/:id', async (req: any, res: any)=> {
+    const id = Number(req.params.id);
+    const task = await prisma.task.delete({
+        where: { id }
+    })
+    res.json(task)
+})
+// End of routes
+
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
