@@ -25,6 +25,20 @@ app.post('/task', async (req: any, res: any) => {
   res.json(task);
 });
 
+app.put('/edit/:id', async (req: any, res: any) => {
+  const id = Number(req.params.id);
+  const { title, color, completed } = req.body;
+  const editTask = await prisma.task.update({
+    where: { id },
+    data: {
+      title,
+      color,
+      completed,
+    },
+  });
+  res.json(editTask);
+});
+
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
