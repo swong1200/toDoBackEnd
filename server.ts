@@ -25,6 +25,7 @@ app.post('/task', async (req: any, res: any) => {
       color,
     },
   });
+  console.log(task);
   res.json(task);
 });
 
